@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'dart:ui' as ui;
 import 'package:image/image.dart' as img;
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SBExample(),
+      home: const SBExample(),
     );
   }
 }
@@ -49,8 +48,8 @@ class _SBExampleState extends State<SBExample> {
     setState(() {});
   }
 
-  Size finalSize = Size(0, 0);
-  Size croppedSize = Size(0, 0);
+  Size finalSize = const Size(0, 0);
+  Size croppedSize = const Size(0, 0);
   img.Image? croppedIMG;
 
   getImageSize(Image image) async {
@@ -106,7 +105,7 @@ class _SBExampleState extends State<SBExample> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: finalColor,
-        title: Text(
+        title: const Text(
           'Shorebird Slowdown Example',
           style: TextStyle(
             color: Colors.deepPurple,
@@ -114,18 +113,18 @@ class _SBExampleState extends State<SBExample> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Final Palette Color"),
+            const Text("Final Palette Color"),
             Text(
               "#${finalColor.value.toRadixString(16)}",
-              style: TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: 30),
             ),
-            SizedBox(height: 20),
-            Center(
+            const SizedBox(height: 20),
+            const Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -137,20 +136,20 @@ class _SBExampleState extends State<SBExample> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
-            Text('If there is a slowdown, the loaders will get stuck'),
-            SizedBox(height: 50),
+            const SizedBox(height: 10),
+            const Text('If there is a slowdown, the loaders will get stuck'),
+            const SizedBox(height: 50),
             SizedBox(
               width: 300,
               child: Image.network(src),
             ),
-            SizedBox(height: 5),
-            Text("Image Size (default)"),
+            const SizedBox(height: 5),
+            const Text("Image Size (default)"),
             Text(
               "(${finalSize.width} x ${finalSize.height})px",
-              style: TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: 30),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             if (croppedIMG != null) ...[
               SizedBox(
                 width: 300,
@@ -158,14 +157,14 @@ class _SBExampleState extends State<SBExample> {
                   Uint8List.fromList(img.encodeJpg(croppedIMG!)),
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
             ],
-            Text("Image Size (cropped)"),
+            const Text("Image Size (cropped)"),
             Text(
               "(${croppedSize.width} x ${croppedSize.height})px",
-              style: TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: 30),
             ),
-            SizedBox(height: 300),
+            const SizedBox(height: 300),
           ],
         ),
       ),
