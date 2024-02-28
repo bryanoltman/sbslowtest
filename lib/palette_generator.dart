@@ -1268,6 +1268,7 @@ class _ColorCutQuantizer {
       );
     }
 
+    print('getting image pixels');
     final List<PaletteColor> paletteColors = <PaletteColor>[];
     final Iterable<Color> pixels = _getImagePixels(
       encodedImage.byteData,
@@ -1275,10 +1276,15 @@ class _ColorCutQuantizer {
       encodedImage.height,
       region: region,
     );
+    print('got image pixels');
+
     final _ColorHistogram hist = _ColorHistogram();
     Color? currentColor;
     _ColorCount? currentColorCount;
 
+    // This is taking ~3s in a release shorebird build on an iPhone X running
+    // iOS 16.2.
+    print('iterating over ${pixels.length} pixels');
     for (final Color pixel in pixels) {
       // Update the histogram, but only for non-zero alpha values, and for the
       // ones we do add, make their alphas opaque so that we can use a Color as
@@ -1298,6 +1304,8 @@ class _ColorCutQuantizer {
       }
       currentColorCount!.value = currentColorCount.value + 1;
     }
+    print('iterated over pixels');
+
     // Now let's remove any colors that the filters want to ignore.
     hist.removeWhere((Color color) {
       return _shouldIgnoreColor(color);
