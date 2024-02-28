@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:palette_generator/palette_generator.dart';
+import 'package:sbslowtest/palette_generator.dart';
 
 void main() {
   runApp(const MyApp());
